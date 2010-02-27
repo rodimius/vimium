@@ -71,6 +71,9 @@ addCommand('copyCurrentUrl',      'Copy the current URL to the clipboard.');
 
 addCommand('enterInsertMode',     'Enter insert mode.');
 
+addCommand('enterPassThroughMode', 'Enter Pass Through Mode.');
+addCommand('setPassThroughOnce',      'Pass Through Once.');
+
 addCommand('activateLinkHintsMode',               'Enter link hints mode to open links in current tab.');
 addCommand('activateLinkHintsModeToOpenInNewTab', 'Enter link hints mode to open links in new tab.');
 
@@ -105,6 +108,9 @@ mapKeyToCommand('r', 'reload');
 mapKeyToCommand('gf', 'toggleViewSource');
 
 mapKeyToCommand('i', 'enterInsertMode');
+
+mapKeyToCommand('<c-;>', 'enterPassThroughMode');
+mapKeyToCommand('<c-z>', 'setPassThroughOnce');
 
 mapKeyToCommand('ba', 'goBack');
 mapKeyToCommand('H', 'goBack');

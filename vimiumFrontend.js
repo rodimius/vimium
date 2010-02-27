@@ -10,6 +10,8 @@ var settingsToLoad = ["scrollStepSize", "linkHintCharacters"];
 var getCurrentUrlHandlers = []; // function(url)
 
 var keyCodes = { ESC: 27, backspace: 8, deleteKey: 46, enter: 13, space: 32 };
+var passThroughMode = false;
+var passThroughOnce = false;
 var insertMode = false;
 var findMode = false;
 var findModeQuery = "";
@@ -272,6 +274,18 @@ function isEscape(event) {
  */
 function onKeydown(event) {
   var keyChar = "";
+  if (passThroughMode && isEscape(event))
+  {
+    exitPassThroughMode();
+  }
+
+  if (passThroughMode) {
+    if (passThroughOnce) {
+      passThroughOnce = false;
+      exitPassThroughMode();
+    }
+    return;
+  }
 
   if (linkHintsModeActivated)
     return;
@@ -393,6 +407,21 @@ function enterInsertMode() {
 
 function exitInsertMode() {
   insertMode = false;
+  HUD.hide();
+}
+
+function setPassThroughOnce() {
+  enterPassThroughMode();
+  passThroughOnce = true;
+}
+
+function enterPassThroughMode() {
+  passThroughMode = true;
+  HUD.show("Pass Through Mode");
+}
+
+function exitPassThroughMode() {
+  passThroughMode = false;
   HUD.hide();
 }
 
